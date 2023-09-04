@@ -1,0 +1,9 @@
+uuid: a3f5574a-627b-4512-a13e-a1e2d3c237c6
+langcode: en
+status: true
+dependencies: {  }
+id: news_anchor
+label: 'News Anchor'
+weight: 4
+is_admin: null
+permissions: {  }

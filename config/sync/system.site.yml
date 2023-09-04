@@ -2,7 +2,7 @@ _core:
   default_config_hash: VDJxTZtQR21qB4lvOq8zszJZLvLKrSPQpdn2E3T71Ww
 langcode: en
 uuid: 0c9e0220-dd28-4e53-8ec0-0e81003f3fdb
-name: Test
+name: 'Inno News'
 mail: pratyusha.goswami@innoraft.com
 slogan: ''
 page:

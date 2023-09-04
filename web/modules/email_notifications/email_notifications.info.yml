@@ -1,0 +1,5 @@
+name: Email Notifications Module
+description: Sends an Email to Anchor's Editor in charge when a news is created or edited.
+package: Custom
+type: module
+core_version_requirement: ^9 || ^10

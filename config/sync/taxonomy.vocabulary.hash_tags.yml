@@ -1,0 +1,8 @@
+uuid: b0c20b78-b583-4066-be95-30a74eaefbe8
+langcode: en
+status: true
+dependencies: {  }
+name: 'Hash Tags'
+vid: hash_tags
+description: ''
+weight: 0
