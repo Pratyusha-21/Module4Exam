@@ -1,0 +1,68 @@
+<?php 
+
+use Drupal\node\Entity\Node;
+use Drupal\user\Entity\User;
+
+  /**
+ * Implements hook_mail() to define email templates.
+ */
+function node_delete_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'node_delete':
+      $message['subject'] = t('Node Delete');
+      $message['body'][] = t($params['context']['params']);
+      break;
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function node_delete_cron() {
+  $six_months_ago = strtotime('-6 months');
+  $six_months_ago_date = date('Y-m-d', $six_months_ago);
+
+  $user = \Drupal::entityQuery('user')
+  ->condition('status', 1)
+  ->condition('roles', 'content_editor')
+  ->accessCheck(FALSE);
+  $uids = $user->execute();
+  $query = \Drupal::entityQuery('node')
+  ->condition('type', 'news')
+  ->accessCheck(FALSE);
+  $nids = $query->execute();
+  if (!empty($nids)) {
+    foreach ($nids as $nid) {
+      $node = Node::load($nid);
+      if ($node) {
+        $created_timestamp = $node->getCreatedTime();
+        $created_date = \Drupal::service('date.formatter')->format($created_timestamp, 'custom', 'Y-m-d');
+        if ($created_date < $six_months_ago_date) {
+          $node_titles[] =  $node->label();
+          $node->delete();
+        }
+      }
+    }
+  }
+  $params = "";
+  foreach ($node_titles as $node_title) {
+    $params = $params . " " . $node_title;
+  }
+  $params = $params . " above nodes are deleted";
+  if (!empty($uids)) {
+    foreach ($uids as $uid) {
+      $user = User::load($uid);
+      if($user) {
+        $user_email = $user->get('mail')->value;
+        $to = $user_email; 
+        $language_code = \Drupal::currentUser()->getPreferredLangcode();
+        $mail_params = [
+          'context' => [
+            'params' => $params,
+          ],
+        ];
+        \Drupal::service('plugin.manager.mail')->mail('node_delete', 'node_delete', $to, $language_code, $mail_params);
+      }
+    }
+  }
+}

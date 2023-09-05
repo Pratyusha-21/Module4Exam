@@ -1,0 +1,5 @@
+name: Node Delete Module
+description: Deletes node that are 6 months older and sends mail to all Editor.
+package: Custom
+type: module
+core_version_requirement: ^9 || ^10

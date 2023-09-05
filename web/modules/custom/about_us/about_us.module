@@ -1,0 +1,11 @@
+<?php 
+/**
+ * Implements hook_views_pre_render().
+ */
+function about_us_views_pre_render(\Drupal\views\ViewExecutable $view) {
+	if ($view->id() == 'leadership_list' ) {
+		$results = $view->result;
+		$node = \Drupal::entityTypeManager()->getStorage('node')->load();
+	}
+}
+  

@@ -1,0 +1,33 @@
+uuid: d6060723-d144-4595-967d-5d16461d7251
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_anchor
+    - node.type.leadership
+id: node.leadership.field_anchor
+field_name: field_anchor
+entity_type: node
+bundle: leadership
+label: Anchor
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: role
+      role:
+        news_anchor: news_anchor
+        content_editor: '0'
+        administrator: '0'
+    include_anonymous: true
+field_type: entity_reference

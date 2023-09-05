@@ -1,0 +1,6 @@
+name: News Section Block Module
+description: Shows a block of latest 5 news of different author but same genre.
+package: Custom
+type: module
+core_version_requirement: ^9 || ^10
+
