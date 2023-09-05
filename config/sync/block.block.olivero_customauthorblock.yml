@@ -1,0 +1,25 @@
+uuid: 3cf0c241-ceda-434b-bdab-417beecee8cd
+langcode: en
+status: true
+dependencies:
+  module:
+    - about_us
+    - system
+  theme:
+    - olivero
+id: olivero_customauthorblock
+theme: olivero
+region: content
+weight: 0
+provider: null
+plugin: anchor_block
+settings:
+  id: anchor_block
+  label: 'Anchor List'
+  label_display: visible
+  provider: about_us
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /about-us

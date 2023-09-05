@@ -1,0 +1,5 @@
+name: Notify Category Head Module
+description: Shows a message if the category already has a category head.
+package: Custom
+type: module
+core_version_requirement: ^9 || ^10

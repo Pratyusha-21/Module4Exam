@@ -1,0 +1,21 @@
+_core:
+  default_config_hash: HENvUIeX6xNPGRB1w3z6rT9a71LM_hKXATF6XrM9WvM
+smtp_on: true
+smtp_host: smtp.gmail.com
+smtp_hostbackup: ''
+smtp_port: '587'
+smtp_protocol: tls
+smtp_autotls: true
+smtp_timeout: 30
+smtp_username: pratyusha.goswami@innoraft.com
+smtp_password: 'alxp sfrp nqmh mzfz'
+smtp_from: pratyusha.goswami@innoraft.com
+smtp_fromname: 'Pratyusha Goswami'
+smtp_client_hostname: re-exam.com
+smtp_client_helo: ''
+smtp_allowhtml: '1'
+smtp_test_address: 2000pgoswami@gmail.com
+smtp_reroute_address: ''
+smtp_debugging: true
+prev_mail_system: php_mail
+smtp_keepalive: false

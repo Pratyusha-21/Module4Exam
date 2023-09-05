@@ -1,0 +1,6 @@
+multiple_registration_pages_allowed_list:
+  content_editor: content_editor
+  news_anchor: news_anchor
+  anonymous: 0
+  authenticated: 0
+  administrator: 0

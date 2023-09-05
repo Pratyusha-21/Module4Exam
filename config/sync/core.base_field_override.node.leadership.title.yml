@@ -1,0 +1,18 @@
+uuid: a4e7e393-bd78-4553-be2f-d1b8ff655626
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.leadership
+id: node.leadership.title
+field_name: title
+entity_type: node
+bundle: leadership
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

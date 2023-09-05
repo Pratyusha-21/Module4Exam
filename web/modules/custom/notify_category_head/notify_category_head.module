@@ -1,0 +1,27 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+function notify_category_head_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'user_register_form') {
+    $form['#validate'][] = 'notify_category_head_validate_taxonomy_duplicates';
+  }
+}
+
+/**
+ * Custom form validation function to check for used taxonomy terms.
+ */
+function notify_category_head_validate_taxonomy_duplicates($form, FormStateInterface $form_state) {
+  // Get the selected values from the taxonomy field.
+  $used_terms = $form_state->getValue('field_category_head'); 
+  $target_id = $used_terms[0]['target_id'];
+  $user = \Drupal::entityTypeManager()->getStorage('user')->load($target_id);
+  $user_name = $user->getAccountName();
+  // Check for used taxonomy terms.
+    if (count($used_terms) >= 1) {
+    $form_state->setErrorByName('field_category_head', t('This category’s head in charge is @user, either update his category or select any
+    other category from the list', ['@user' => $user_name]));
+  }
+}

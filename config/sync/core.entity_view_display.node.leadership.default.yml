@@ -1,0 +1,66 @@
+uuid: a80a80f1-dc1b-4e12-b0e6-c1d7ca5acfd7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.leadership.field_anchor
+    - field.field.node.leadership.field_designation
+    - field.field.node.leadership.field_image
+    - field.field.node.leadership.field_linkedin_profile_link
+    - image.style.wide
+    - node.type.leadership
+  module:
+    - image
+    - link
+    - text
+    - user
+id: node.leadership.default
+targetEntityType: node
+bundle: leadership
+mode: default
+content:
+  field_anchor:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_designation:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: wide
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: -1
+    region: content
+  field_linkedin_profile_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

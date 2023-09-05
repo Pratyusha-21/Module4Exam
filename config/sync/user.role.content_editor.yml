@@ -5,10 +5,12 @@ dependencies:
   config:
     - node.type.article
     - node.type.page
+    - taxonomy.vocabulary.hash_tags
     - taxonomy.vocabulary.tags
   module:
     - comment
     - contextual
+    - field_permissions
     - file
     - node
     - path
@@ -19,7 +21,7 @@ dependencies:
 _core:
   default_config_hash: NtMgnXp0miNtJhag07NSjwdCm4zpJwhlDFs1HgyL4wI
 id: content_editor
-label: 'Content editor'
+label: Editor
 weight: 2
 is_admin: false
 permissions:
@@ -31,7 +33,9 @@ permissions:
   - 'access tour'
   - 'administer url aliases'
   - 'create article content'
+  - 'create field_hash_tags'
   - 'create page content'
+  - 'create terms in hash_tags'
   - 'create terms in tags'
   - 'create url aliases'
   - 'delete article revisions'
@@ -39,11 +43,17 @@ permissions:
   - 'delete own files'
   - 'delete own page content'
   - 'delete page revisions'
+  - 'delete terms in hash_tags'
+  - 'edit field_hash_tags'
   - 'edit own article content'
   - 'edit own comments'
+  - 'edit own field_hash_tags'
   - 'edit own page content'
+  - 'edit terms in hash_tags'
   - 'edit terms in tags'
   - 'revert all revisions'
   - 'view all revisions'
+  - 'view field_hash_tags'
+  - 'view own field_hash_tags'
   - 'view own unpublished content'
   - 'view the administration theme'

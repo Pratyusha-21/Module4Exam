@@ -1,0 +1,85 @@
+<?php 
+/**
+ * Implements hook_mail() to define email templates.
+ */
+function notification_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'entity_create_alert':
+      $message['subject'] = t('News Entity Create Alert');
+      $message['body'][] = t('A new node has been added to the news content type');
+      break;
+
+    case 'entity_update_alert':
+      $message['subject'] = t('News Entity Update Alert');
+      $message['body'][] = t('A news node has been updated successfully');
+      break;
+  }
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function email_notifications_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() === 'node') {
+    $uid = $entity->getOwnerId();
+    // Load the user entity based on the user ID.
+    $user = \Drupal\user\Entity\User::load($uid);
+    $referenced_users = $user->get('field_editor_in_charge')->referencedEntities();
+    // Initialize an array to store email addresses of referenced users.
+    $email_addresses = [];
+    // Loop through the referenced users.
+    foreach ($referenced_users as $referenced_user) {
+      // Get the email address of the referenced user.
+      $email = $referenced_user->get('mail')->value;
+      // Add the email address to the array.
+      $email_addresses[] = $email;
+    }
+    foreach ($email_addresses as $email_address) {
+      $params = "Entity Created";
+      $to = $email_address; // Change to the recipient's email address.
+      $language_code = \Drupal::currentUser()->getPreferredLangcode();
+      $mail_params = [
+        'context' => [
+          'params' => $params,
+        ],
+      ];
+      \Drupal::service('plugin.manager.mail')->mail('notification', 'entity_create_alert', $to, $language_code, $mail_params);
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function email_notifications_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() === 'node') {
+    $uid = $entity->getOwnerId();
+    // Load the user entity based on the user ID.
+    $user = \Drupal\user\Entity\User::load($uid);
+    $referenced_users = $user->get('field_editor_in_charge')->referencedEntities();
+    // Initialize an array to store email addresses of referenced users.
+    $email_addresses = [];
+    // Loop through the referenced users.
+    foreach ($referenced_users as $referenced_user) {
+      // Get the email address of the referenced user.
+      $email = $referenced_user->get('mail')->value;
+      // Add the email address to the array.
+      $email_addresses[] = $email;
+    }
+    foreach ($email_addresses as $email_address) {
+      $params = "Entity Updated";
+      $to = $email_address; // Change to the recipient's email address.
+      $language_code = \Drupal::currentUser()->getPreferredLangcode();
+      $mail_params = [
+        'context' => [
+          'params' => $params,
+        ],
+      ];
+      \Drupal::service('plugin.manager.mail')->mail('notification', 'entity_update_alert', $to, $language_code, $mail_params);
+    }
+  }
+}
+
+
+
+
